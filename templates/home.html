@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Tracking App</title>
-</head>
-<body>
-    <h1>Testing 1,2,3,4!</h1>
+{% extends "base.html" %}
 
-    <form action="{{ url_for('add_team') }}" method="POST">
-        {{ team_form.csrf_token() }}
-        {{ team_form.team_name.label }}
-        {{ team_form.team_name }}
-        {{ team_form.submit.label }}
-        {{ team_form.submit }}
+{% block content %}
+    <h1>Home</h1>
+
+    <h2>Add Team</h2>
+    <form method="POST" action="{{ url_for('add_team') }}">
+        {{ team_form.hidden_tag() }}
+        {{ team_form.team_name.label }} {{ team_form.team_name() }}
+        {{ team_form.submit() }}
     </form>
 
-    <form action="{{ url_for('add_project') }}" method="POST">
-        {{ project_form.csrf_token() }}
-        {{ project_form.project_name.label }}
-        {{ project_form.project_name }}
-        {{ project_form.description.label }}
-        {{ project_form.description }}
-        {{ project_form.completed.label }}
-        {{ project_form.completed }}
-        {{ project_form.team_id.label }}
-        {{ project_form.team_id }}
-        {{ project_form.submit.label }}
-        {{ project_form.submit }}
+    <h2>Add Project</h2>
+    <form method="POST" action="{{ url_for('add_project') }}">
+        {{ project_form.hidden_tag() }}
+        {{ project_form.project_name.label }} {{ project_form.project_name() }}
+        {{ project_form.description.label }} {{ project_form.description() }}
+        {{ project_form.completed.label }} {{ project_form.completed() }}
+        {{ project_form.team_id.label }} {{ project_form.team_id() }}
+        {{ project_form.submit() }}
     </form>
-
-</body>
-</html>
+{% endblock %}

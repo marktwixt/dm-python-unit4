@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Teams and Projects for <a href="{{ url_for('user_profile', user_id=user.id) }}">{{ user.username }}</a></h1>
+
+    {% for team in user.teams %}
+        <h2>{{ team.team_name }}</h2>
+
+        <form method="POST">
+            {{ update_team_form.hidden_tag() }}
+            <input type="hidden" name="team_id" value="{{ team.id }}">
+            {{ update_team_form.team_name.label }} {{ update_team_form.team_name() }}
+            {{ update_team_form.submit() }}
+        </form>
+
+        <form method="POST">
+            {{ delete_team_form.hidden_tag() }}
+            <input type="hidden" name="team_id" value="{{ team.id }}">
+            {{ delete_team_form.submit() }}
+        </form>
+
+        <h3>Projects:</h3>
+        <ul>
+            {% for project in team.projects %}
+                <li>{{ project.project_name }} - {{ project.description }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}
+
+
+
+
+
+
+

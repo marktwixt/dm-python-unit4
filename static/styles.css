@@ -1,0 +1,90 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: #FFAA00;
+    font-family: 'Cinzel', serif;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+nav {
+    background-color: #663300;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav a {
+    color: #FFAA00;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-right: 1em;
+    font-family: 'Cinzel', serif;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+form {
+    margin-bottom: 1em;
+    background-color: #333333;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+input[type="submit"], button {
+    background-color: #FFAA00;
+    color: #000000;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #FFDD00;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 0.5em 0;
+}
+
+img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid #FFAA00;
+}
+
+.profile-pic {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-pic-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #FFAA00;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}

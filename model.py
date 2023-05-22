@@ -1,4 +1,6 @@
 import os
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -11,11 +13,19 @@ class User(db.Model):
     username = db.Column(db.String(255), unique = True, nullable = False)
     password = db.Column(db.String(255), nullable = False)
 
+    profile_picture = db.Column(db.String, default="default.jpg") 
+    posts = db.relationship('Post', backref='author', lazy=True) 
+
     teams = db.relationship("Team", backref = "user", lazy = True)
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 class Team(db.Model):
 

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ user.username }}'s Profile</h1>
+    <div class="profile-pic">
+        <img src="{{ image_file }}" alt="Profile Picture">
+        <button class="edit-pic-btn">Edit</button>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <input id="file-input" type="file" name="picture" style="display: none;">
+        <div class="post-update">
+            {{ form.update_text.label }} 
+            {{ form.update_text() }}
+            {{ form.submit() }}
+        </div>
+    </form>
+
+    <h2>Teams:</h2>
+    <ul>
+    {% for team in user.teams %}
+        <li>{{ team.team_name }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Latest Update:</h2>
+    <p>{{ user.update_text }}</p>
+
+    <script>
+        document.querySelector('.edit-pic-btn').addEventListener('click', function() {
+            document.getElementById('file-input').click();
+        });
+
+        document.getElementById('file-input').addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                this.closest('form').submit();
+            }
+        });
+    </script>
+{% endblock %}
